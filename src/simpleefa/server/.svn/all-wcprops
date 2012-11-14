@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3/trunk/%20simpleefa-api/simpleEFA/src/simpleefa/server
+END
+Simpleefa.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/6/trunk/%20simpleefa-api/simpleEFA/src/simpleefa/server/Simpleefa.java
+END
+CoordinateServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/5/trunk/%20simpleefa-api/simpleEFA/src/simpleefa/server/CoordinateServlet.java
+END
+NextArrivalsServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/5/trunk/%20simpleefa-api/simpleEFA/src/simpleefa/server/NextArrivalsServlet.java
+END
+ConnectionServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/5/trunk/%20simpleefa-api/simpleEFA/src/simpleefa/server/ConnectionServlet.java
+END
+StationNameServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/5/trunk/%20simpleefa-api/simpleEFA/src/simpleefa/server/StationNameServlet.java
+END
+NextDeparturesServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/5/trunk/%20simpleefa-api/simpleEFA/src/simpleefa/server/NextDeparturesServlet.java
+END

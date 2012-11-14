@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="SimpleEFA.css">
+    <title>The simpleEFA API</title>
+  </head>
+
+  <body>
+    <h2>Congratulations!</h2>
+    <p>
+    You have installed the simpleEFA-API successfully. To check whether the API is working as it should, try the following example requests:
+    </p>
+    <p>
+    <a href="stationname?station=stuttgart%20hauptbahnhof">stationname?station=stuttgart%20hauptbahnhof</a>
+	<a href="nextdepartures?station=53020397&onlyTypes=4&maxResults=2">nextdepartures?station=53020397&onlyTypes=4&maxResults=2</a>
+	<a href="connection?from=53000688&to=44409225&via=75040014">connection?from=53000688&to=44409225&via=75040014</a>
+	<a href="coordinate?x=504260&y=5374497&radius=350">coordinate?x=504260&y=5374497&radius=350</a>
+	</p>
+	<p>
+	For more Information on the SimpleEFA-API, have a look <a href="http://patrickbrosi.de?q=simpleefa">here</a>.
+	</p>
+  </body>
+</html>
