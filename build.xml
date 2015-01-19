@@ -5,7 +5,6 @@
   <property file="build.properties" />
 
   <path id="project.class.path">
-    <pathelement location="war/WEB-INF/classes"/>
     <fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
   </path>
 
