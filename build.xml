@@ -28,13 +28,14 @@
   <target name="build" depends="javac" description="Build this project" />
 
   <target name="war" depends="build" description="Create a war file">
-    <zip destfile="simpleefa.war" basedir="war"/>
+    <mkdir dir="build"/>  
+    <zip destfile="build/simpleefa.war" basedir="war"/>
   </target>
 
   <target name="clean" description="Cleans this project">
     <delete dir="war/WEB-INF/classes" failonerror="false" />
     <delete dir="war/test" failonerror="false" />
-    <delete file="simpleefa.war" failonerror="false" />
+    <delete dir="build" failonerror="false" />
 </target>
 
 </project>
