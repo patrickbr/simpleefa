@@ -8,12 +8,13 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.xquery.XQPreparedExpression;
 
 import simpleefa.server.requestbuilder.PostData;
 
 /**
- * @author patrick
- *
+ * @author Patrick Brosi
+ * 
  */
 public class ConnectionServlet extends SimpleEfaServlet {
 
@@ -23,31 +24,37 @@ public class ConnectionServlet extends SimpleEfaServlet {
 	private static final long serialVersionUID = 8114130077969761004L;
 
 	protected File getXqueryPath() throws URISyntaxException {
-		return new File(getClass().getResource("/simpleefa/server/xquery/connection.qry").toURI());
+		return new File(getClass().getResource(
+				"/simpleefa/server/xquery/connection.qry").toURI());
 	}
 
 	protected String getEfaService() {
 		return "XML_TRIP_REQUEST2";
 	}
 
-	protected PostData createPostData(HttpServletRequest request) throws UnsupportedEncodingException {
+	protected PostData createPostData(HttpServletRequest request,
+			XQPreparedExpression pEx) throws UnsupportedEncodingException {
+		HashMap<String, String> ret = new HashMap<String, String>();
 
-		HashMap<String,String> ret = new HashMap<String,String>();
-		
-		String station_enc = getRequestPostData(request,"from");
-		String station_to_enc = getRequestPostData(request,"to");
-		String station_via_enc = getRequestPostData(request,"via");
-		String depArr = (request.getParameter("timetype") != null && request.getParameter("timetype").toLowerCase().equals("arr")) ? request.getParameter("timetype") : "dep";
+		String station_enc = getRequestPostData(request, "from");
+		String station_to_enc = getRequestPostData(request, "to");
+		String station_via_enc = getRequestPostData(request, "via");
+		String depArr = (request.getParameter("timetype") != null && request
+				.getParameter("timetype").toLowerCase().equals("arr")) ? request
+				.getParameter("timetype") : "dep";
 		long time = getTime(request.getParameter("time"));
-		int maxResults = ensureInt(request.getParameter("maxResults"),5);
-		String filterTypes = request.getParameter("onlyTypes") != null ? request.getParameter("onlyTypes") : "0!1!2!3!4!5!6!7!8!9!10!11";
+		int maxResults = ensureInt(request.getParameter("maxResults"), 4);
+		String filterTypes = request.getParameter("onlyTypes") != null ? request
+				.getParameter("onlyTypes") : "0!1!2!3!4!5!6!7!8!9!10!11";
 
-		Date d =new Date(time);		
+		Date d = new Date(time);
 		Calendar c = Calendar.getInstance();
 		c.setTime(d);
 
-		String date = (c.get(Calendar.YEAR)) + ""+ leadingZero(c.get(Calendar.MONTH)+1) +""+ leadingZero(c.get(Calendar.DATE));
-		HashMap<String,String> filterMap = getMotString(filterTypes);		
+		String date = (c.get(Calendar.YEAR)) + ""
+				+ leadingZero(c.get(Calendar.MONTH) + 1) + ""
+				+ leadingZero(c.get(Calendar.DATE));
+		HashMap<String, String> filterMap = getMotString(filterTypes);
 
 		ret.put("anySigWhenPerfectNoOtherMatches", "1");
 		ret.put("convertAddressesITKernel2LocationServer", "1");
@@ -56,8 +63,8 @@ public class ConnectionServlet extends SimpleEfaServlet {
 		ret.put("convertPOIsITKernel2LocationServer", "1");
 		ret.put("convertStopsPTKernel2LocationServer", "1");
 		ret.put("locationServerActive", "1");
-		ret.put("itdTimeHour", ""+c.get(Calendar.HOUR_OF_DAY));
-		ret.put("itdTimeMinute", ""+c.get(Calendar.MINUTE));
+		ret.put("itdTimeHour", "" + c.get(Calendar.HOUR_OF_DAY));
+		ret.put("itdTimeMinute", "" + c.get(Calendar.MINUTE));
 		ret.put("itdDate", date);
 		ret.put("language", "de");
 		ret.put("includedMeans", "checkbox");
@@ -85,9 +92,9 @@ public class ConnectionServlet extends SimpleEfaServlet {
 		ret.put("sessionID", "0");
 		ret.put("type_origin", "stop");
 		ret.put("type_destination", "stop");
-		ret.put("type_via", (station_via_enc.equals("")?"":"stop"));
+		ret.put("type_via", (station_via_enc.equals("") ? "" : "stop"));
 		ret.put("routeType", "LEASTTIME");
-		ret.put("execInst", "normal");
+		ret.put("execInst", "normresponseal");
 		ret.put("calculateDistance", "0");
 		ret.put("changeSpeed", "normal");
 		ret.put("useAllStops", "0");
@@ -95,10 +102,10 @@ public class ConnectionServlet extends SimpleEfaServlet {
 		ret.put("useProxFootSearch", "1");
 		ret.put("useRealtime", "1");
 		ret.put("calculateDistance", "1");
-		ret.put("calcNumberOfTrips", ""+maxResults);
+		ret.put("calcNumberOfTrips", "" + maxResults);
 
 		ret.putAll(filterMap);
-	
+
 		return new PostData(ret);
 	}
 }

@@ -29,8 +29,8 @@ let $y := data($req/itdCoordInfo/coordInfoRequest/itdCoord/@y)
  return
  <nearby_stations> 
 <for_input>
-	<x>{$x}</x>
-	<y>{$y}</y>
+	<lng>{$x * $x_cor}</lng>
+	<lat>{$y * $y_cor}</lat>
 </for_input>
 {
  
@@ -50,7 +50,7 @@ let $y := data($req/itdCoordInfo/coordInfoRequest/itdCoord/@y)
 			<station_name>
 				{$stationname}
 			</station_name>
-			<position x='{xs:decimal($x + $x_cor)}' y='{xs:decimal($y_cor - $y)}' />
+			<position lng='{$x * $x_cor}' lat='{$y * $y_cor}' />
 		</station>
 }
 </nearby_stations>

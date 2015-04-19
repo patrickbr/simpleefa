@@ -51,7 +51,7 @@ let $sortet_loc := for $loc in $req/itdOdv/itdOdvName/odvNameElem order by numbe
 			<station_name>
 				{$stationname}
 			</station_name>
-			<position x='{xs:decimal($x - 3000060)}' y='{xs:decimal(6158420-$y)}' />
+			<position lng='{xs:decimal($x)}' lat='{xs:decimal($y)}' />
 		</station>
 }
 </possible_stations>

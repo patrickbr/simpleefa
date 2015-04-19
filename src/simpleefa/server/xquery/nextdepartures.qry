@@ -28,6 +28,8 @@ declare function functx:getTrack($track as xs:string?) as xs:string {
 };
 
 declare variable $doc external;
+declare variable $x_cor external;
+declare variable $y_cor external;
 for $req in $doc//itdDepartureMonitorRequest 
 	let $hour := data($req/itdDateTime/itdTime/@hour) 
 	let $minute := data($req/itdDateTime/itdTime/@minute)
@@ -50,7 +52,7 @@ then <request id='{$req/@requestID}'><error code='404'>Station not found.</error
 			<station_name>
 				{data($req/itdOdv/itdOdvName/odvNameElem/@objectName)}
 			</station_name>
-			<position x='{xs:decimal($x - 3000060)}' y='{xs:decimal(6158420-$y)}' />
+			<position lng='{$x * $x_cor}' lat='{$y * $y_cor}' />
 		</station>
 		<dateandtime>
 			<time>

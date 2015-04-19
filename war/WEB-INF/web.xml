@@ -3,14 +3,15 @@
     PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
-<web-app>
-  
-  <!-- Servlets -->
-  
-  <!-- Default page to serve -->
+<web-app>  
+  <!-- simpleEFA welcome page -->
   <welcome-file-list>
     <welcome-file>SimpleEFA.html</welcome-file>
   </welcome-file-list>
+  
+  <listener>
+  	<listener-class>simpleefa.server.SimpleEfa</listener-class>
+  </listener>
 
   <servlet>
     <servlet-name>StationNameServlet</servlet-name>
@@ -30,8 +31,7 @@
   <servlet-mapping>
     <servlet-name>NextDepartures</servlet-name>
     <url-pattern>/nextdepartures</url-pattern>
-  </servlet-mapping>
-  
+  </servlet-mapping>  
     
   <servlet>
     <servlet-name>NextArrivals</servlet-name>
@@ -62,5 +62,4 @@
     <servlet-name>Coordinate</servlet-name>
     <url-pattern>/coordinate</url-pattern>
   </servlet-mapping>
-
 </web-app>
