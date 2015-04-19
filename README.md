@@ -10,7 +10,9 @@ A simplefied wrapper around EFA's XML interface
 
 ## Installation ##
 
-This is a Java-Servlet which can for example be run in Tomcat. To create a distributable WAR-File (which can also be uploaded to any Tomcat-Server) type
+This is a Java-Servlet which can for example be run in Tomcat. A pre-built WAR can be found in the releases.
+
+To create a distributable WAR-File yourself checkout this repo and type
 
     ant war
 
