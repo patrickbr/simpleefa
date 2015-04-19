@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="SimpleEFA" default="build" basedir=".">
- 
-
   <property file="build.properties" />
 
   <path id="project.class.path">
@@ -36,7 +34,6 @@
     <delete dir="war/WEB-INF/classes" failonerror="false" />
     <delete dir="war/test" failonerror="false" />
     <delete dir="build" failonerror="false" />
-</target>
-
+  </target>
 </project>
 
