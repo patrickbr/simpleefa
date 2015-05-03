@@ -31,3 +31,7 @@ Most EFA-Installation expect request strings to be ISO-encoded. However, there a
 ## Documentation ##
 
 http://patrickbrosi.de/#q=simpleefa
+
+## License ##
+
+SimpleEFA is published under GPL v2, see LICENSE. This software uses 3rd party software under MPL v2 (Saxon-HE 9.5), see LICENSE-3RD-PARTY.
