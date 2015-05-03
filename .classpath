@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/usr/share/tomcat7/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/saxon9he.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xqj-api-1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/saxon9-xqj.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
