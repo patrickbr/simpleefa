@@ -5,6 +5,7 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/saxon9he.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xqj-api-1.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/saxon9-xqj.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/java-json.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

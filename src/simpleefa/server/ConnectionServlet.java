@@ -23,15 +23,18 @@ public class ConnectionServlet extends SimpleEfaServlet {
 	 */
 	private static final long serialVersionUID = 8114130077969761004L;
 
+	@Override
 	protected File getXqueryPath() throws URISyntaxException {
 		return new File(getClass().getResource(
 				"/simpleefa/server/xquery/connection.qry").toURI());
 	}
 
+	@Override
 	protected String getEfaService() {
 		return "XML_TRIP_REQUEST2";
 	}
 
+	@Override
 	protected PostData createPostData(HttpServletRequest request,
 			XQPreparedExpression pEx) throws UnsupportedEncodingException {
 		HashMap<String, String> ret = new HashMap<String, String>();

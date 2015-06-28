@@ -27,12 +27,19 @@ public class SimpleEfa implements ServletContextListener {
 
 	public static Properties PROPERTIES = new Properties();
 
+	/**
+	 * 
+	 */
 	protected static boolean checkLimit(HttpServletRequest request,
 			ServletContext c) {
 		String host = request.getRemoteAddr();
 		return checkAccess(host, c);
 	}
 
+	/**
+	 * check whether to host has access, implements simple whitelisting and
+	 * request restriction
+	 */
 	private static boolean checkAccess(String host, ServletContext c) {
 		if (MAXCONNPERHOUR == -1 || Arrays.asList(WHITELIST).contains(host))
 			return true;
@@ -66,6 +73,9 @@ public class SimpleEfa implements ServletContextListener {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	protected static void limitReached(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		ServletOutputStream out = response.getOutputStream();

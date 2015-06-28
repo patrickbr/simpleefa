@@ -21,15 +21,18 @@ public class CoordinateServlet extends SimpleEfaServlet {
 	 */
 	private static final long serialVersionUID = -371521138469209370L;
 
+	@Override
 	protected File getXqueryPath() throws URISyntaxException {
 		return new File(getClass().getResource(
 				"/simpleefa/server/xquery/coordinate.qry").toURI());
 	}
 
+	@Override
 	protected String getEfaService() {
 		return "XML_COORD_REQUEST";
 	}
 
+	@Override
 	protected PostData createPostData(HttpServletRequest request,
 			XQPreparedExpression pEx) throws UnsupportedEncodingException,
 			XQException {

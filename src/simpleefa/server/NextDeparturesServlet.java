@@ -24,15 +24,18 @@ public class NextDeparturesServlet extends SimpleEfaServlet {
 	 */
 	private static final long serialVersionUID = 8114130077969761004L;
 
+	@Override
 	protected File getXqueryPath() throws URISyntaxException {
 		return new File(getClass().getResource(
 				"/simpleefa/server/xquery/nextdepartures.qry").toURI());
 	}
 
+	@Override
 	protected String getEfaService() {
 		return "XML_DM_REQUEST";
 	}
 
+	@Override
 	protected PostData createPostData(HttpServletRequest request,
 			XQPreparedExpression pEx) throws UnsupportedEncodingException,
 			XQException {
