@@ -35,10 +35,38 @@ public class ConnectionServlet extends SimpleEfaServlet {
 	protected PostData createPostData(HttpServletRequest request,
 			XQPreparedExpression pEx) throws UnsupportedEncodingException {
 		HashMap<String, String> ret = new HashMap<String, String>();
-
+		
 		String station_enc = getRequestPostData(request, "from");
+		String station_type = "stop";
 		String station_to_enc = getRequestPostData(request, "to");
+		String station_to_type = "stop";
 		String station_via_enc = getRequestPostData(request, "via");
+		String station_via_type = "stop";
+		
+		if (!getRequestPostData(request, "from_lng").isEmpty() &&
+				!getRequestPostData(request, "from_lat").isEmpty()) {
+			double lng = ensureDouble(request.getParameter("from_lng"), 0);
+			double lat = ensureDouble(request.getParameter("from_lat"), 0);
+			station_enc = getCoordinateStrFromLatLng(lat, lng);
+			station_type = "coord";
+		}
+		
+		if (!getRequestPostData(request, "to_lng").isEmpty() &&
+				!getRequestPostData(request, "to_lat").isEmpty()) {
+			double lng = ensureDouble(request.getParameter("to_lng"), 0);
+			double lat = ensureDouble(request.getParameter("to_lat"), 0);
+			station_to_enc = getCoordinateStrFromLatLng(lat, lng);
+			station_to_type = "coord";
+		}
+		
+		if (!getRequestPostData(request, "via_lng").isEmpty() &&
+				!getRequestPostData(request, "via_lat").isEmpty()) {
+			double lng = ensureDouble(request.getParameter("via_lng"), 0);
+			double lat = ensureDouble(request.getParameter("via_lat"), 0);
+			station_via_enc = getCoordinateStrFromLatLng(lat, lng);
+			station_via_type = "coord";
+		}
+		
 		String depArr = (request.getParameter("timetype") != null && request
 				.getParameter("timetype").toLowerCase().equals("arr")) ? request
 				.getParameter("timetype") : "dep";
@@ -71,6 +99,9 @@ public class ConnectionServlet extends SimpleEfaServlet {
 		ret.put("name_origin", station_enc);
 		ret.put("name_destination", station_to_enc);
 		ret.put("name_via", station_via_enc);
+		ret.put("type_origin", station_type);
+		ret.put("type_destination", station_to_type);
+		ret.put("type_via", (station_via_enc.equals("") ? "" : station_via_type));
 		ret.put("place_origin", "");
 		ret.put("place_destination", "");
 		ret.put("placeInfo_origin", "invalid");
@@ -90,9 +121,6 @@ public class ConnectionServlet extends SimpleEfaServlet {
 		ret.put("anyObjFilter_destination", "126");
 		ret.put("requestID", "0");
 		ret.put("sessionID", "0");
-		ret.put("type_origin", "stop");
-		ret.put("type_destination", "stop");
-		ret.put("type_via", (station_via_enc.equals("") ? "" : "stop"));
 		ret.put("routeType", "LEASTTIME");
 		ret.put("execInst", "normresponseal");
 		ret.put("calculateDistance", "0");

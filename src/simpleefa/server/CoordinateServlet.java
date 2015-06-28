@@ -44,7 +44,7 @@ public class CoordinateServlet extends SimpleEfaServlet {
 		pEx.bindDouble(new QName("y_cor"), 0.000001, null);
 
 		ret.put("coordOutputFormat", "WGS84");
-		ret.put("coord", lng + ":" + lat + ":WGS84");
+		ret.put("coord", getCoordinateStrFromLatLng(lat, lng));
 		ret.put("inclDrawClasses_1", "1:2:6");
 		ret.put("max", "-1");
 		ret.put("purpose", "");

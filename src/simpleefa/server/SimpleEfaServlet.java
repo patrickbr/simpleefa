@@ -141,6 +141,10 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 			return System.currentTimeMillis();
 		}
 	}
+	
+	protected String getCoordinateStrFromLatLng(double lat, double lng) {
+		return Double.toString(lng) + ":" + Double.toString(lat) + ":WGS84";
+	}
 
 	protected String getRequestPostData(HttpServletRequest request,
 			String post, String def) throws UnsupportedEncodingException {

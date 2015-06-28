@@ -36,4 +36,4 @@ http://patrickbrosi.de/#q=simpleefa
 
 ## License ##
 
-SimpleEFA is published under GPL v2, see LICENSE. This software uses 3rd party software under MPL v2 (Saxon-HE 9.5) and other, see LICENSE-3RD-PARTY.
+SimpleEFA is published under GPL v2, see LICENSE. This software uses 3rd party libraries under MPL v2 (Saxon-HE 9.5) and other, see LICENSE-3RD-PARTY.
