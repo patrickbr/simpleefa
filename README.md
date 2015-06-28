@@ -32,7 +32,17 @@ Most EFA-Installation expect request strings to be ISO-encoded. However, there a
 
 ## Documentation ##
 
-http://patrickbrosi.de/#q=simpleefa
+http://patrickbrosi.de/de/projects/simpleefa/
+
+## JSON-Output ##
+
+The default output format is XML directly rendered from the result of an XQuery query. However, you can enforce JSON format by setting the GET parameter `format=JSON`, for example like this:
+
+    http://localhost:10080/simpleefa/stationname?station=stuttgart%20hauptbahnhof&format=JSON
+    
+An optional GET parameter `callback` will wrap the outputted JSON to make it into JSONP:
+
+    http://localhost:10080/simpleefa/stationname?station=stuttgart%20hauptbahnhof&format=JSON&callback=mycallback
 
 ## License ##
 
