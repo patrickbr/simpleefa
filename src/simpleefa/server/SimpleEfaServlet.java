@@ -87,13 +87,27 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 		
 		String returnString = out.toString("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Server", "simpleEFA");
 		
 		if (request.getParameter("format") != null &&
 				request.getParameter("format").toLowerCase().equals("json")) {
 			// convert output to JSON if requested
-			JSONObject xmlJSONObj = XML.toJSONObject(returnString);
 			response.setContentType("text/javascript");
-			returnString = xmlJSONObj.toString();
+			
+			Xml2Json xml2json = new Xml2Json();
+								
+			// define xpaths for arrays in JSON
+			xml2json.addPathRule("/request/connections/connection", null, true, false);
+			xml2json.addPathRule("/request/next_departures/departure", null, true, false);
+			xml2json.addPathRule("/request/connections/connection/connection_parts/part", null, true, false);
+			xml2json.addPathRule("/nearby_stations/station", null, true, false);
+			xml2json.addPathRule("/possible_stations/station", null, true, false);			
+		
+			try {
+				returnString = xml2json.xml2json(returnString);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 			// wrap with optional callback string
 			if (request.getParameter("callback") != null &&
@@ -105,7 +119,6 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 			response.setContentType("text/xml");
 		}
 		
-		response.setHeader("Server", "simpleEFA");
 		response.getOutputStream().write(returnString.getBytes());
 	}
 
