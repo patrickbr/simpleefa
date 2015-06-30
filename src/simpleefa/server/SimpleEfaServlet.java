@@ -52,6 +52,7 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 		
 		// output stream the xquery response will be written to
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		out.write("<?xml version=\"1.0\"?>".getBytes());
 
 		try {
 			conn = dataSource.getConnection();
@@ -66,8 +67,6 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 			input = rb.fireRequest();
 			b.bind(input);
 
-			out.write("<?xml version=\"1.0\"?>".getBytes());
-
 			XQSequence result = pEx.executeQuery();
 			result.writeSequence(out, null);
 
@@ -78,10 +77,8 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 			input.close();
 			rb.disconnect();
 		} catch (FileNotFoundException e) {
-			out.write("<?xml version=\"1.0\"?>".getBytes());
 			out.write(("<error>Could not connect to " + efa_url + "</error>").getBytes());
 		} catch (Exception e) {
-			out.write("<?xml version=\"1.0\"?>".getBytes());
 			out.write("<error>Could process server response.</error>".getBytes());
 		}
 		
@@ -100,6 +97,7 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 			xml2json.addPathRule("/request/connections/connection", null, true, false);
 			xml2json.addPathRule("/request/next_departures/departure", null, true, false);
 			xml2json.addPathRule("/request/connections/connection/connection_parts/part", null, true, false);
+			xml2json.addPathRule("/request/connections/connection/connection_parts/part/station", null, true, false);
 			xml2json.addPathRule("/nearby_stations/station", null, true, false);
 			xml2json.addPathRule("/possible_stations/station", null, true, false);			
 		
