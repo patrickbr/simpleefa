@@ -23,6 +23,8 @@ declare function functx:time ($hour as xs:anyAtomicType,$minute as xs:anyAtomicT
 declare variable $doc external;
 declare variable $input external;
 declare variable $limit external;
+declare variable $x_cor external;
+declare variable $y_cor external;
 for $req in $doc//itdDepartureMonitorRequest 
 let $sortet_loc := for $loc in $req/itdOdv/itdOdvName/odvNameElem order by number(data($loc/@matchQuality)) descending return $loc
  return 
@@ -51,7 +53,7 @@ let $sortet_loc := for $loc in $req/itdOdv/itdOdvName/odvNameElem order by numbe
 			<station_name>
 				{$stationname}
 			</station_name>
-			<position lng='{xs:decimal($x)}' lat='{xs:decimal($y)}' />
+			<position lng='{xs:decimal($x) * $x_cor}' lat='{xs:decimal($y) * $y_cor}' />
 		</station>
 }
 </possible_stations>

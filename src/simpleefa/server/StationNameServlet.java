@@ -44,6 +44,9 @@ public class StationNameServlet extends SimpleEfaServlet {
 
 		pEx.bindString(new QName("input"), station, null);
 		pEx.bindInt(new QName("limit"), limit, null);
+		
+		pEx.bindDouble(new QName("x_cor"), 0.000001, null);
+		pEx.bindDouble(new QName("y_cor"), 0.000001, null);
 
 		ret.put("cookieOptions", "");
 		ret.put("itdLPxx_routeType", "");

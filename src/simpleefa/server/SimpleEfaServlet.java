@@ -100,7 +100,7 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 			xml2json.addPathRule("/request/connections/connection/connection_parts/part/station", null, true, false);
 			xml2json.addPathRule("/nearby_stations/station", null, true, false);
 			xml2json.addPathRule("/possible_stations/station", null, true, false);			
-		
+				
 			try {
 				returnString = xml2json.xml2json(returnString);
 			} catch (Exception e) {

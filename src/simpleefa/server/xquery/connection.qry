@@ -21,6 +21,8 @@ declare function functx:time ($hour as xs:anyAtomicType,$minute as xs:anyAtomicT
 	functx:pad-integer-to-length(xs:integer($second),2)))
 } ;
 declare variable $doc external;
+declare variable $x_cor external;
+declare variable $y_cor external;
 for $req in $doc//itdTripRequest 
 	let $hour := data($req/itdTripDateTime/itdDateTime/itdTime/@hour) 
 	let $minute := data($req/itdTripDateTime/itdDateTime/itdTime/@minute)
@@ -83,14 +85,17 @@ then <request id='{$req/@requestID}'><error code='404'>Station not found.</error
 					{
 						for $part in $con/itdPartialRouteList/itdPartialRoute
 							let $duration := data($part/@timeMinute)
+							let $distance := data($part/@distance)
 							let $line := $part/itdMeansOfTransport
 
-							return <part duration='{$duration}'>
+							return <part duration='{$duration}' distance='{$distance}'>
 								{
 									for $loc in $part/itdPoint
 										let $id := data($loc/@stopID)
 										let $used_for := data($loc/@usage)
 										let	$platform := data($loc/@platform)
+										let	$x := data($loc/@x)
+										let	$y := data($loc/@y)
 										let $name := data($loc/@name)
 										let $station_name := data($loc/@nameWO)
 										let $location_name := data($loc/@locality)
@@ -112,6 +117,10 @@ then <request id='{$req/@requestID}'><error code='404'>Station not found.</error
 												<date>
 													{$year}-{$month}-{$day}
 												</date>
+												<pos>
+														<lng>{$x * $x_cor}</lng>
+														<lat>{$y * $y_cor}</lat>
+												</pos>
 											</dateandtime>
 										</station>
 										

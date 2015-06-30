@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.namespace.QName;
+import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
 
 import simpleefa.server.requestbuilder.PostData;
@@ -86,6 +88,13 @@ public class ConnectionServlet extends SimpleEfaServlet {
 				+ leadingZero(c.get(Calendar.MONTH) + 1) + ""
 				+ leadingZero(c.get(Calendar.DATE));
 		HashMap<String, String> filterMap = getMotString(filterTypes);
+				
+		try {
+			pEx.bindDouble(new QName("x_cor"), 0.000001, null);
+			pEx.bindDouble(new QName("y_cor"), 0.000001, null);
+		} catch (XQException e) {
+			e.printStackTrace();
+		}
 
 		ret.put("anySigWhenPerfectNoOtherMatches", "1");
 		ret.put("convertAddressesITKernel2LocationServer", "1");
@@ -126,7 +135,6 @@ public class ConnectionServlet extends SimpleEfaServlet {
 		ret.put("sessionID", "0");
 		ret.put("routeType", "LEASTTIME");
 		ret.put("execInst", "normresponseal");
-		ret.put("calculateDistance", "0");
 		ret.put("changeSpeed", "normal");
 		ret.put("useAllStops", "0");
 		ret.put("useHouseNumberList_dm", "1");
@@ -134,6 +142,7 @@ public class ConnectionServlet extends SimpleEfaServlet {
 		ret.put("useRealtime", "1");
 		ret.put("calculateDistance", "1");
 		ret.put("calcNumberOfTrips", "" + maxResults);
+		ret.put("coordOutputFormat", "WGS84");
 
 		ret.putAll(filterMap);
 
