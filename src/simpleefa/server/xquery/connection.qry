@@ -132,6 +132,11 @@ then <request id='{$req/@requestID}'><error code='404'>Station not found.</error
 										<station used_for='destination' id='{data($line/@destID)}'>
 											{data($line/@destination)}
 										</station>
+										
+										<agency>
+											<name>{$line/itdOperator/name/child::text()}</name>
+											<code>{$line/itdOperator/publicCode/child::text()}</code>
+										</agency>
 								</line>
 								<infotext>
 									{for $line in $part/itdInfoTextList/infoTextListElem
