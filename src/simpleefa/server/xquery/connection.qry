@@ -81,6 +81,11 @@ then <request id='{$req/@requestID}'><error code='404'>Station not found.</error
 						{$year}-{$month}-{$day}
 					</date>
 				</dateandtime>
+				<fare>
+					<adult currency="{data($con/itdFare/itdSingleTicket/@currency)}" value="{data($con/itdFare/itdSingleTicket/@fareAdult)}"></adult>
+					<child currency="{data($con/itdFare/itdSingleTicket/@currency)}" value="{data($con/itdFare/itdSingleTicket/@fareChild)}"></child>
+					<bike currency="{data($con/itdFare/itdSingleTicket/@currency)}" value="{data($con/itdFare/itdSingleTicket/@fareBikeAdult)}"></bike>
+				</fare>
 				<connection_parts>
 					{
 						for $part in $con/itdPartialRouteList/itdPartialRoute
