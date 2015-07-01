@@ -122,11 +122,11 @@ then <request id='{$req/@requestID}'><error code='404'>Station not found.</error
 												<date>
 													{$year}-{$month}-{$day}
 												</date>
-												<pos>
-														<lng>{$x * $x_cor}</lng>
-														<lat>{$y * $y_cor}</lat>
-												</pos>
 											</dateandtime>
+											<pos>
+													<lng>{$x * $x_cor}</lng>
+													<lat>{$y * $y_cor}</lat>
+											</pos>
 										</station>
 										
 								}
