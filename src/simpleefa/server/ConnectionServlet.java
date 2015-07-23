@@ -41,18 +41,18 @@ public class ConnectionServlet extends SimpleEfaServlet {
 			XQPreparedExpression pEx) throws UnsupportedEncodingException {
 		HashMap<String, String> ret = new HashMap<String, String>();
 		
-		String station_enc = getRequestPostData(request, "from");
+		String station_enc = enc(getRequestPostData(request, "from"));
 		String station_type = "stop";
-		String station_to_enc = getRequestPostData(request, "to");
+		String station_to_enc = enc(getRequestPostData(request, "to"));
 		String station_to_type = "stop";
-		String station_via_enc = getRequestPostData(request, "via");
+		String station_via_enc = enc(getRequestPostData(request, "via"));
 		String station_via_type = "stop";
 		
 		if (!getRequestPostData(request, "from_lng").isEmpty() &&
 				!getRequestPostData(request, "from_lat").isEmpty()) {
 			double lng = ensureDouble(request.getParameter("from_lng"), 0);
 			double lat = ensureDouble(request.getParameter("from_lat"), 0);
-			station_enc = getCoordinateStrFromLatLng(lat, lng);
+			station_enc = enc(getCoordinateStrFromLatLng(lat, lng));
 			station_type = "coord";
 		}
 		
@@ -60,7 +60,7 @@ public class ConnectionServlet extends SimpleEfaServlet {
 				!getRequestPostData(request, "to_lat").isEmpty()) {
 			double lng = ensureDouble(request.getParameter("to_lng"), 0);
 			double lat = ensureDouble(request.getParameter("to_lat"), 0);
-			station_to_enc = getCoordinateStrFromLatLng(lat, lng);
+			station_to_enc = enc(getCoordinateStrFromLatLng(lat, lng));
 			station_to_type = "coord";
 		}
 		
@@ -68,7 +68,7 @@ public class ConnectionServlet extends SimpleEfaServlet {
 				!getRequestPostData(request, "via_lat").isEmpty()) {
 			double lng = ensureDouble(request.getParameter("via_lng"), 0);
 			double lat = ensureDouble(request.getParameter("via_lat"), 0);
-			station_via_enc = getCoordinateStrFromLatLng(lat, lng);
+			station_via_enc = enc(getCoordinateStrFromLatLng(lat, lng));
 			station_via_type = "coord";
 		}
 		

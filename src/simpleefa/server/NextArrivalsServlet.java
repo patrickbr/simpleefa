@@ -44,7 +44,7 @@ public class NextArrivalsServlet extends SimpleEfaServlet {
 
 		int woAssignedStops = ensureInt(
 				request.getParameter("withoutNearStops"), 0);
-		String station = getRequestPostData(request, "station");
+		String station = enc(getRequestPostData(request, "station"));
 		long time = (getTime(request.getParameter("time")));
 		int maxResults = ensureInt(request.getParameter("maxResults"), 30);
 		String filterTypes = getRequestPostData(request, "onlyTypes",

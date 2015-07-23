@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -219,11 +220,20 @@ public abstract class SimpleEfaServlet extends HttpServlet {
 			String post, String def) throws UnsupportedEncodingException {
 		String ret = request.getParameter(post) != null ? request
 				.getParameter(post) : def;
+		
+		// decode user request
+		ret = URLDecoder.decode(ret, "UTF-8");		
+	
+		return ret;
+	}
+	
+	protected String enc(String str) throws UnsupportedEncodingException {
 		if (SimpleEfa.PROPERTIES.getProperty("common.isoencoderequests", "1")
 				.equals("1")) {
-			ret = URLEncoder.encode(ret, "iso-8859-15");
+			str = URLEncoder.encode(str, "iso-8859-15");
 		}
-		return ret;
+		
+		return str;
 	}
 
     /**

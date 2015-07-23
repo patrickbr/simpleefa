@@ -40,7 +40,7 @@ public class StationNameServlet extends SimpleEfaServlet {
 
 		int limit = request.getParameter("maxResults") != null ? Integer
 				.parseInt(request.getParameter("maxResults")) : 20;
-		String station = getRequestPostData(request, "station");
+		String station = enc(getRequestPostData(request, "station"));
 
 		pEx.bindString(new QName("input"), station, null);
 		pEx.bindInt(new QName("limit"), limit, null);

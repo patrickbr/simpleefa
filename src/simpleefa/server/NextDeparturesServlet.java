@@ -41,7 +41,7 @@ public class NextDeparturesServlet extends SimpleEfaServlet {
 			XQException {
 		HashMap<String, String> ret = new HashMap<String, String>();
 
-		String station = getRequestPostData(request, "station");
+		String station = enc(getRequestPostData(request, "station"));
 		int woAssignedStops = ensureInt(
 				request.getParameter("withoutNearStops"), 0);
 		long time = (getTime(request.getParameter("time")));
