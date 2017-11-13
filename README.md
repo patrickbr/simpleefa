@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/patrickbr/simpleefa.svg?branch=master)](https://travis-ci.org/patrickbr/simpleefa)
+
 # SimpleEFA #
 
 A simplefied wrapper around EFA's XML interface
