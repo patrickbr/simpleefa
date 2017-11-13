@@ -1,0 +1,4 @@
+language: java
+install: sudo apt-get -qq update && sudo apt-get install tomcat7 && export CLASSPATH=/usr/share/tomcat7/lib/servlet-api.jar
+script:
+    ant build
